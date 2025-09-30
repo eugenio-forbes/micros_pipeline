@@ -25,6 +25,7 @@ This project provides a Matlab-based pipeline that facilitates the processing of
 2) Install [combinato](https://github.com/jniediek) in micros_pipeline/pipeline/base_code folder. Anaconda environment for combinato is found in the same folder.
 3) Edit paths for parent directory in all files.
 
+
 ## Usage:
 1) Individual Blackrock Neurotech raw microelectrode recordings (.ns6) should be stored in folders with the following format: /parent_directory/micros_database/subject_code/yyyy-mm-dd_task/raw/microelectrode_recording.ns6
 
@@ -32,6 +33,6 @@ This project provides a Matlab-based pipeline that facilitates the processing of
 
 
 ## Future Improvements:
-- Add logging for every response attempt.
-- Expand and curate word pools and image sets.
-- Currently "theta burst" stimulation is delivered using a for loop. Blackrock's Matlab API allows for programming of complex stimulation patterns without the need of a loop. Using this would enable early termination of trial once subject response is submitted.
+- Add cleanup function to remove unnecessary intermediate files.
+- Add more methods for referencing, denoising, and clustering.
+- Plot single unit activity spikes back into raw signal to verify they are not noise.
