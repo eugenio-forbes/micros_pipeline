@@ -39,3 +39,4 @@ Edit parameters of functions in update_micros.sh
 - Add cleanup function to remove unnecessary intermediate files.
 - Add more methods for referencing, denoising, and clustering.
 - Plot single unit activity spikes back into raw signal to verify they are not noise.
+- Accurate alignment would actually require correction of behavioral task computer time.
