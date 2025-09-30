@@ -32,6 +32,9 @@ This project provides a Matlab-based pipeline that facilitates the processing of
 2) Execute micros_pipeline/update_micros.sh in terminal.
 
 
+## Optional:
+Edit parameters of functions in update_micros.sh
+
 ## Future Improvements:
 - Add cleanup function to remove unnecessary intermediate files.
 - Add more methods for referencing, denoising, and clustering.
