@@ -1,0 +1,108 @@
+# -*- coding: utf-8 -*-
+
+"""
+Combinato local_options.py template:
+This template contains parameters for artifact rejection and clustering,
+among others. A few were selected to perform grid search of parameters that
+would be more ideal for clustering sessions that produce many false positives,
+overcluster, or undercluster. The grid search parameters are formatted
+to be modified by sprintf function in Matlab. The rest of the parameters
+are included for manual modification. Modify custom_options.txt and use
+'single' mode in n06_combinato_func to use custom parameters. 
+"""
+
+# pylint: disable=no-member, invalid-name
+
+from __future__ import division, print_function, absolute_import
+
+import numpy as np
+from matplotlib import cm
+
+# set CLUS_BINARY here
+CLUS_BINARY = '/path/to/micros_pipeline/pipeline/base_code/combinato/spc/cluster_linux64.exe'
+MAX_AMPLITUDE = 150 #default 150
+MIN_AMPLITUDE = 100 #default 100
+
+"""
+Artifact criteria will be collectively modified to be more strict
+vs default. If below criteria are not met, spike is classified as artifact.
+"""
+
+artifact_criteria = {
+    'maxima': %d,              #default 5,  (grid tests 4)   :maximum number of maxima a spike can have
+    'maxima_1_2_ratio': %.1f,  #default 2,  (grid tests 1.8) :maximum ratio of 1st vs 2nd maxima
+    'max_min_ratio': %.1f,     #default 1.5 (grid tests 1.3) :maximum ratio of maxima and minima
+    'sem': 4,                  #default 4
+    'ptp': %.1f                #default 1   (grid tests 0.9) :maximum ratio of maxima to peak-peak value in 2nd half
+}
+options = {
+    # For the following 3 groups of parameters, modified to be (tighter vs looser)
+    
+    # 1) Modified parameter that determines cluster grouping
+    'MaxDistMatchGrouping': %.2f,   # default 1.8 (grid 1.65 vs 1.95) : maximum distance for grouping clusters
+    
+    # 2) Collectively modified parameters that determine cluster sizes
+    'MinSpikesPerClusterMultiSelect': %d,  # default 15  (grid 15 vs 20)     :minimum spikes for cluster to be selected
+    'FirstMatchFactor': %.2f,               # default .75 (grid 0.65 vs 0.85) :maximum radius for first template match
+    'SecondMatchFactor': %.1f,                # default 3   (grid 2.6 vs 3.4)   :maximum radius for second template match
+    'MaxClustersPerTemp': %d,               # default 5   (grid 8 vs 5)       :maximum clusters per temperature
+
+    # 3) Modified to add 1 recursion to recluster to big clusters or not
+    'RecursiveDepth': %d,  # default is 1 (no recursion) (grid 2 vs 1) :how many times to recluster + 1 (first clustering)
+    'ReclusterClusters': True,      # default True
+    'MinInputSizeRecluster': 2000,  # default 2000 : how many spikes to consider reclustering
+
+    # Therefore, with 4 groups of parameters, two options each, there are 16 combinations tested in grid search.
+    
+    ################################## Other parameters ####################################################
+
+    # Use this option to create raster plots in css-gui
+    # This requires 'raster_options', see Documentation
+    'RunGuiWithRaster': False,
+
+    # Use this option to make css-gui read time stamps from
+    # extraction thresholds instead of spike times (for display only)
+    'GuiUseThresholdTimeAxis': False,
+    'MinInputSize': 15,
+    'TempStep': 0.01,
+    'MarkArtifactClasses': True,
+    'FractionOfBiggestCluster': .05,
+    'nFeatures': 10,
+    'Wavelet': 'haar',
+
+    'ClusterPath': CLUS_BINARY,
+
+    'ShowSPCOutput': False,
+    'RecheckArtifacts': True,  # check after total match
+    'plot': True,
+    'plotTemps': True,
+    'figsize': (2, 2),
+    'dpi': 100,  # so figure is 200x200 pixels
+    'ylim': (-200, 200),
+    'linewidth': .4,
+    'tempfigsize': (5, 5),
+    'ArtifactOverview': False,
+    'feature_factor': 3,
+    'overwrite': True,
+    'ExcludeVariableClustersMatch': True,
+    'FirstMatchMaxDist': 4,   # default 4
+    'SecondMatchMaxDist': 20,
+    'OverwriteGroups': True,
+    'smallmarker': 3,
+    'bigmarker': 3,
+    'max_amplitude': MAX_AMPLITUDE,
+    'min_amplitude': MIN_AMPLITUDE,
+    'compute_isi_upto_ms': 200,   # default 100. Eugenio: changed for better view of more spread clusters
+    'isi_n_bins': 200,            # default 100
+    'isi_too_short_ms': 3,  # used to for isi plot, in single/multi unit crit
+    'density_hist_bins': np.linspace(-MIN_AMPLITUDE,
+                                     MAX_AMPLITUDE,
+                                     MAX_AMPLITUDE),
+    'cmap': cm.hot,
+    'overview_ax_ylim': (-150, 150),
+    'Debug': False,
+    'histcolor': 'b',
+    'histtype': 'stepfilled',
+    'guistyle': 'oxygen',
+    'UseCython': False
+}
