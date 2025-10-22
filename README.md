@@ -69,10 +69,10 @@ It may not always be possible to remove noise from very noisy channels.
 
 Next, considering how timely it would be to review spike clustering results to verify whether hundreds of thousands of spike cluster are actual neural activity (SU) vs. noise/artifact (N), this project attempts to further automatize this process by comparing features and clustering quality metrics of labeled clusters. Below is an example of this comparison.
 <p align="center">
-  <img src="/quality_metrics/plots/neurons/2023-09-12_all_neurons_sua_vs_noise.png" alt="Clean2" width="1080"/>
+  <img src="/quality_metrics/plots/neurons/2023-09-12_all_neurons_sua_vs_noise.png" alt="Quality1" width="1080"/>
 </p>
 
 Finally, one could also compare quality metrics between different signal acquisition devices, such as digital (D) vs. analog (A) headstages, to assess which device yields better results.
 <p align="center">
-  <img src="/quality_metrics/plots/neurons/2023-09-12_all_neurons_digital_vs_analog.png" alt="Clean2" width="1080"/>
+  <img src="/quality_metrics/plots/neurons/2023-09-12_all_neurons_digital_vs_analog.png" alt="Quality2" width="1080"/>
 </p>
