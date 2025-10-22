@@ -41,3 +41,38 @@ Edit parameters of functions in update_micros.sh
 - Plot single unit activity spikes back into raw signal to verify they are not noise.
 - Accurate alignment would actually require correction of behavioral task computer time.
 - Save spike data in lighter format.
+
+## Example Plots
+The key to identifying neural activity in microelectrode recordings is first of all ensuring that the signal is of good quality. If line noise power exceeds signal power, then most of the spikes that are extracted will be the peaks and troughs of the fundamental frequency and harmonics. Therefore, this project places significant emphasis in methods that would effectively eliminate noise, and provides visualization methods to assess this.
+
+First of all, one may be able to reduce the noise that is present in all channels with a referencing method. Available methods include referencing to a calculated common average reference, selecting the channel that had the lower signal (spike range) power, selecting the channel that had the greatest line noise power, or none.
+
+The figure below shows that selecting the channel with the lowest signal power as a reference was effective in reducing line noise power by close to 35dB.
+<p align="center">
+  <img src="/process/files/n02_reref/plots/2019-10-05_AR_BankB_signal_power.png" alt="Reref1" width="1080"/>
+</p>
+
+One has to be careful with the referencing method selected, since this may duplicate spike signal to other channels as seen in the example below. It could also increase line noise power in other channels when selecting the channel with the greatest amount of line noise.
+<p align="center">
+  <img src="/process/files/n02_reref/plots/2019-10-05_AR_BankA_signal_power.png" alt="Reref2" width="1080"/>
+</p>
+
+Another method for dealing with line noise would be filtering. Although combinato offers band passes of the signal, it does not handle harmonics. Zapline by [NoiseTools](http://audition.ens.fr/adc/NoiseTools/) may be effective at further reducing the power of line noise and harmonics, as shown below.
+<p align="center">
+  <img src="/process/files/n02_reref/plots/2019-10-05_AR_BankA_signal_power.png" alt="Clean1" width="1080"/>
+</p>
+
+It may not always be possible to remove noise from very noisy channels.
+<p align="center">
+  <img src="/process/files/n02_reref/plots/2020-01-12_AR_BankB_signal_power.png" alt="Clean2" width="1080"/>
+</p>
+
+Next, considering how timely it would be to review spike clustering results to verify whether hundreds of thousands of spike cluster are actual neural activity (SU) vs. noise/artifact (N), this project attempts to further automatize this process by comparing features and clustering quality metrics of labeled clusters. Below is an example of this comparison.
+<p align="center">
+  <img src="/quality_metrics/plots/2023-09-12_all_neurons_sua_vs_noise.png" alt="Clean2" width="1080"/>
+</p>
+
+One could also compare quality metrics between different signal acquisition devices, such as digital (D) vs. analog (A) headstages, to assess which device yields better results.
+<p align="center">
+  <img src="/quality_metrics/plots/2023-09-12_all_neurons_digital_vs_analog.png" alt="Clean2" width="1080"/>
+</p>
