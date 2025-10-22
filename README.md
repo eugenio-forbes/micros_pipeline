@@ -59,12 +59,12 @@ One has to be careful with the referencing method selected, since this may dupli
 
 Another method for dealing with line noise would be filtering. Although combinato offers band passes of the signal, it does not handle harmonics. Zapline by [NoiseTools](http://audition.ens.fr/adc/NoiseTools/) may be effective at further reducing the power of line noise and harmonics, as shown below.
 <p align="center">
-  <img src="/process_files/n03_clean/plots/2019-10-05_AR_BankA_signal_power.png" alt="Clean1" width="1080"/>
+  <img src="/process_files/n03_clean/plots/2019-10-05_AR_BankA.png" alt="Clean1" width="1080"/>
 </p>
 
 It may not always be possible to remove noise from very noisy channels.
 <p align="center">
-  <img src="/process_files/n03_clean/plots/2020-01-12_AR_BankB_signal_power.png" alt="Clean2" width="1080"/>
+  <img src="/process_files/n03_clean/plots/2020-01-12_AR_BankB.png" alt="Clean2" width="1080"/>
 </p>
 
 Next, considering how timely it would be to review spike clustering results to verify whether hundreds of thousands of spike cluster are actual neural activity (SU) vs. noise/artifact (N), this project attempts to further automatize this process by comparing features and clustering quality metrics of labeled clusters. Below is an example of this comparison.
